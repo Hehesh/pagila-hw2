@@ -1,4 +1,4 @@
-FROM postgres:12
+FROM pgvector/pgvector:pg18
 
 RUN apt-get update && apt-get install -y \
     less \

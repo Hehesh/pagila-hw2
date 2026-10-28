@@ -1,3 +1,11 @@
-/*
- * List the name of all actors who have appeared in a movie that has the 'Behind the Scenes' special_feature
- */
+SELECT DISTINCT
+       a.first_name || ' ' || a.last_name AS "Actor Name"
+FROM actor AS a
+JOIN film_actor AS fa
+    ON fa.actor_id = a.actor_id
+JOIN film AS f
+    ON f.film_id = fa.film_id
+WHERE 'Behind the Scenes' IN (
+    SELECT unnest(f.special_features)
+)
+ORDER BY "Actor Name";
